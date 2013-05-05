@@ -15,8 +15,9 @@ public class PlayerMovement : MonoBehaviour
 	public bool isTrigger = false;
 
 	// Use this for initialization
-	void Start() 
+	void Start()
 	{                
+		isTrigger = false;
 		characterController = GetComponent<CharacterController>();
 	}
 	
@@ -35,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
 	{
 		if (c.gameObject.tag == "Ladder")
 		{
+			Debug.Log("isTrigger == true");
 			isTrigger = true;
 		}
 	}
@@ -55,7 +57,9 @@ public class PlayerMovement : MonoBehaviour
 	{
 		if (c.gameObject.tag == "Ladder")
 		{
+			Debug.Log("isTrigger == false");
 			isTrigger = false;
+			grounded = false;
 		}
 	}
 	
@@ -83,25 +87,28 @@ public class PlayerMovement : MonoBehaviour
 	public void jumping()
 	{
 		// Used for jumping
-		if (grounded == true & isTrigger == true)
+		if (grounded == true)// || isTrigger == true)
 		{
 			if (grounded == true & Input.GetKeyDown("space"))
 			{
-				//grounded = false;
+				grounded = false;
+				//isTrigger = false;
 				movement.y = 10f;
 
 				//yield return WaitForSeconds(2f);
-					
-				//Debug.Log ("Jumping on/off the ladder");
+				
+				// Debug.Log("space was pressed");	
 			}
 		}
 		// Used for coming back down
-		else
+		else if (grounded == false)
 		{
 			movement.y -= gravity * Time.deltaTime;
+			//Debug.Log(movement.y);
 			if (movement.y <= 0)
 			{
-				grounded = false;
+				Debug.Log("AWESOME!!!!!!!");
+				grounded = true;
 			    movement.y = -5f;
 			}
 		}	
@@ -112,24 +119,25 @@ public class PlayerMovement : MonoBehaviour
 		// Ladder interaction
 		if (isTrigger)
 		{
+			Debug.Log("Herp derp");
 			// Climbing up
 			if (Input.GetAxis ("Vertical") > 0)	
 			{
-				movement.y = 1f;
+				movement.y = 4f;
 				
-				if (grounded == true & Input.GetKeyDown("space"))
+				if (grounded == false & Input.GetKeyDown("space"))
 				{
 					movement.y = 10f;
 
 					//yield return WaitForSeconds(2f);
 					
-					//Debug.Log ("Jumping on/off the ladder");
+					Debug.Log ("Jumping on/off the ladder");
 				}
 			}
 			// Climbing down
 			else if (Input.GetAxis ("Vertical") <= 0)
 			{
-				movement.y = -2f;
+				movement.y = -3f;
 				
 				if (grounded == false & Input.GetKeyDown("space"))
 				{
