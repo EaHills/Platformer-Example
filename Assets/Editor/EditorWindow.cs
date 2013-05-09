@@ -14,6 +14,7 @@ public class MyEditor : EditorWindow
 	[MenuItem("Tools / Set Mass")]
 	static void SetMass()
 	{	
+		
 		float magnitude = 10f;
 		
 		Debug.Log ("Setting Mass");

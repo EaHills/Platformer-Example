@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
 	{
 		if (c.gameObject.tag == "Ladder")
 		{
-			Debug.Log("isTrigger == true");
+			//Debug.Log("isTrigger == true");
 			isTrigger = true;
 		}
 	}
@@ -57,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
 	{
 		if (c.gameObject.tag == "Ladder")
 		{
-			Debug.Log("isTrigger == false");
+			//Debug.Log("isTrigger == false");
 			isTrigger = false;
 			grounded = false;
 		}
@@ -107,7 +107,7 @@ public class PlayerMovement : MonoBehaviour
 			//Debug.Log(movement.y);
 			if (movement.y <= 0)
 			{
-				Debug.Log("AWESOME!!!!!!!");
+				//Debug.Log("AWESOME!!!!!!!");
 				grounded = true;
 			    movement.y = -5f;
 			}
@@ -119,7 +119,7 @@ public class PlayerMovement : MonoBehaviour
 		// Ladder interaction
 		if (isTrigger)
 		{
-			Debug.Log("Herp derp");
+			//Debug.Log("Herp derp");
 			// Climbing up
 			if (Input.GetAxis ("Vertical") > 0)	
 			{
@@ -131,7 +131,7 @@ public class PlayerMovement : MonoBehaviour
 
 					//yield return WaitForSeconds(2f);
 					
-					Debug.Log ("Jumping on/off the ladder");
+					//Debug.Log ("Jumping on/off the ladder");
 				}
 			}
 			// Climbing down
